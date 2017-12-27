@@ -1,18 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="radfordsm2.androidrecipebook.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/main_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:title="@string/main_header"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/recipe_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight=".4"
+        android:text="@string/recipes_header"
+        android:onClick="startRecipes"/>
+
+    <Button
+        android:id="@+id/pantry_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight=".4"
+        android:text="@string/pantry_header"
+        android:onClick="startPantry"/>
+
+    <Button
+        android:id="@+id/shopping_list_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight=".4"
+        android:text="@string/shopping_header"
+        android:onClick="startShoppingList"/>
+
+    <Button
+        android:id="@+id/meal_builder_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight=".4"
+        android:text="@string/meal_header"
+        android:onClick="startMealBuilder"/>
+
+
+
+</TableLayout>

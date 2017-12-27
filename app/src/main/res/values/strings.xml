@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">AndroidRecipeBook</string>
+    <string name="main_header">Recipe Book</string>
+    <string name="recipes_header">Recipes</string>
+    <string name="pantry_header">Pantry</string>
+    <string name="shopping_header">Shopping List</string>
+    <string name="meal_header">Meal Builder</string>
 </resources>
