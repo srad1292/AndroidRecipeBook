@@ -19,7 +19,7 @@
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:title="@string/main_header"
+        app:title="@string/pantry_header"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
     <ScrollView android:layout_width="match_parent"
