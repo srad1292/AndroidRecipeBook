@@ -34,7 +34,7 @@ public class Step {
         return this.id;
     }
 
-    public int getRecipe_id(){
+    public int getRecipeId(){
         return this.recipe_id;
     }
 
