@@ -11,7 +11,7 @@ public class Ingredient {
     private String category;
 
     public Ingredient(){
-
+        this.id = -1;
     }
 
     public Ingredient(String name, String category){

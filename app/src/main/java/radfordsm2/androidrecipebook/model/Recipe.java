@@ -16,6 +16,7 @@ public class Recipe {
     private String category;
 
     public Recipe() {
+        this.id = -1;
     }
 
     public Recipe(String name, String prep_time, String cook_time, String total_time, String image, String category) {

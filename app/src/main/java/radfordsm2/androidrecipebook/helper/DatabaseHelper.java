@@ -65,12 +65,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + TABLE_RECIPE + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME
             + " TEXT," + KEY_PREP_TIME + " TEXT," + KEY_COOK_TIME
             + " TEXT," + KEY_TOTAL_TIME + " TEXT," + KEY_IMAGE + " TEXT,"
-            + KEY_CATEGORY + " TEXT," + ")";
+            + KEY_CATEGORY + " TEXT" + ")";
 
     // Ingredient table create statement
     private static final String CREATE_TABLE_INGREDIENT = "CREATE TABLE " + TABLE_INGREDIENT
             + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
-            + KEY_CATEGORY + " TEXT," + ")";
+            + KEY_CATEGORY + " TEXT" + ")";
 
     // RecipeIngredient table create statement
     private static final String CREATE_TABLE_RECIPE_INGREDIENT = "CREATE TABLE "
@@ -109,8 +109,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void initialFillDatabase(){
-
+    //Close the database when the connection is no longer needed
+    public void closeDatabase() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        if (db != null && db.isOpen())
+            db.close();
     }
 
     //CRUD methods for Recipe table
@@ -139,7 +142,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(selectQuery, null);
 
-        if (c.moveToFirst()){
+        if (c != null && c.moveToFirst()){
             do {
                 int id = c.getInt(c.getColumnIndex(KEY_ID));
                 String name = c.getString(c.getColumnIndex(KEY_NAME));
@@ -162,13 +165,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT * FROM " + TABLE_RECIPE
                 + " WHERE " + KEY_ID + " = " + recipe_id;
 
-        Log.e(LOG, selectQuery);
+        Log.i(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(selectQuery, null);
 
-        if (c != null){
-            c.moveToFirst();
+        if (c != null && c.moveToFirst()){
             int id = c.getInt(c.getColumnIndex(KEY_ID));
             String name = c.getString(c.getColumnIndex(KEY_NAME));
             String prep = c.getString(c.getColumnIndex(KEY_PREP_TIME));
@@ -186,16 +188,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //Retrieve recipe by Name
     public Recipe getRecipeByName(String recipe_name){
-        String selectQuery = "SELECT * FROM " + TABLE_RECIPE
-                + " WHERE " + KEY_NAME + " = " + recipe_name;
-
-        Log.e(LOG, selectQuery);
-
         SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT * FROM " + TABLE_RECIPE
+                + " WHERE " + KEY_NAME + " = '" + recipe_name + "'";
+
+        Log.i("GetRecipeByName", selectQuery);
+
+
         Cursor c = db.rawQuery(selectQuery, null);
 
-        if (c != null){
-            c.moveToFirst();
+        if (c != null && c.moveToFirst()){
+
             int id = c.getInt(c.getColumnIndex(KEY_ID));
             String name = c.getString(c.getColumnIndex(KEY_NAME));
             String prep = c.getString(c.getColumnIndex(KEY_PREP_TIME));
@@ -215,14 +219,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public List<Recipe> getAllRecipesByCategory(String recipe_category){
         List<Recipe> recipes = new ArrayList<Recipe>();
         String selectQuery = "SELECT * FROM " + TABLE_RECIPE
-                + " WHERE " + KEY_CATEGORY + " = " + recipe_category;
+                + " WHERE " + KEY_CATEGORY + " = '" + recipe_category + "'";
 
-        Log.e(LOG, selectQuery);
+        Log.i(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(selectQuery, null);
 
-        if (c.moveToFirst()){
+        if (c != null && c.moveToFirst()){
             do {
                 int id = c.getInt(c.getColumnIndex(KEY_ID));
                 String name = c.getString(c.getColumnIndex(KEY_NAME));
@@ -260,6 +264,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.delete(TABLE_RECIPE, KEY_ID + " = ?", new String[] { String.valueOf(recipe_id)});
     }
 
+    //Get a count of recipes
+    public int getRecipeCount() {
+        String countQuery = "SELECT  * FROM " + TABLE_RECIPE;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+        int count = 0;
+        if(cursor != null) {
+            count = cursor.getCount();
+            cursor.close();
+        }
+        // return count
+        return count;
+    }
+
     //CRUD methods for Ingredient table
     //Create an ingredient
     public long createIngredient(Ingredient ingredient) {
@@ -282,7 +300,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(selectQuery, null);
 
-        if (c.moveToFirst()){
+        if (c != null && c.moveToFirst()){
             do {
                 int id = c.getInt(c.getColumnIndex(KEY_ID));
                 String name = c.getString(c.getColumnIndex(KEY_NAME));
@@ -306,8 +324,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(selectQuery, null);
 
-        if (c != null){
-            c.moveToFirst();
+        if (c != null && c.moveToFirst()){
+
             int id = c.getInt(c.getColumnIndex(KEY_ID));
             String name = c.getString(c.getColumnIndex(KEY_NAME));
             String category = c.getString(c.getColumnIndex(KEY_CATEGORY));
@@ -322,15 +340,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //Retrieve ingredient by name
     public Ingredient getIngredientByID(String ingredient_name){
         String selectQuery = "SELECT * FROM " + TABLE_INGREDIENT
-                + " WHERE " + KEY_NAME + " = " + ingredient_name;
+                + " WHERE " + KEY_NAME + " = '" + ingredient_name + "'";
 
         Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(selectQuery, null);
 
-        if (c != null){
-            c.moveToFirst();
+        if (c != null && c.moveToFirst()){
             int id = c.getInt(c.getColumnIndex(KEY_ID));
             String name = c.getString(c.getColumnIndex(KEY_NAME));
             String category = c.getString(c.getColumnIndex(KEY_CATEGORY));
@@ -346,14 +363,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public List<Ingredient> getAllIngredientsByCategory(String ingredient_category){
         List<Ingredient> ingredients = new ArrayList<Ingredient>();
         String selectQuery = "SELECT * FROM " + TABLE_INGREDIENT
-                + " WHERE " + KEY_CATEGORY + " = " + ingredient_category;
+                + " WHERE " + KEY_CATEGORY + " = '" + ingredient_category + "'";
 
         Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(selectQuery, null);
 
-        if (c.moveToFirst()){
+        if (c != null && c.moveToFirst()){
             do {
                 int id = c.getInt(c.getColumnIndex(KEY_ID));
                 String name = c.getString(c.getColumnIndex(KEY_NAME));
@@ -383,6 +400,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.delete(TABLE_INGREDIENT, KEY_ID + " = ?", new String[] { String.valueOf(ingredient_id)});
     }
 
+    //Get a count of ingredients
+    public int getIngredientCount() {
+        String countQuery = "SELECT  * FROM " + TABLE_INGREDIENT;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+
+        int count = 0;
+        if(cursor != null) {
+            cursor.getCount();
+            cursor.close();
+        }
+        // return count
+        return count;
+    }
+
+
     //CRUD methods for RecipeIngredient table
     //Create a RecipeIngredient
     public long createRecipeIngredient(long recipe_id, long ingredient_id, String amount) {
@@ -406,7 +439,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(selectQuery, null);
 
-        if (c.moveToFirst()){
+        if (c != null && c.moveToFirst()){
             do {
                 int id = c.getInt(c.getColumnIndex(KEY_ID));
                 int r_id = c.getInt(c.getColumnIndex(KEY_RECIPE_ID));
@@ -437,6 +470,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.delete(TABLE_RECIPE_INGREDIENT, KEY_ID + " = ?", new String[] { String.valueOf(recipe_ingredient_id)});
     }
 
+    //Get a count of RecipeIngredients
+    public int getRecipeIngredientCount() {
+        String countQuery = "SELECT  * FROM " + TABLE_RECIPE_INGREDIENT;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+        int count = 0;
+        if(cursor != null) {
+            count = cursor.getCount();
+            cursor.close();
+        }
+        // return count
+        return count;
+    }
+
+
     //CRUD methods for Step table
     //Create a Step
     public long createStep(long recipe_id, String direction, int stepNumber) {
@@ -460,7 +508,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(selectQuery, null);
 
-        if (c.moveToFirst()){
+        if (c != null && c.moveToFirst()){
             do {
                 int id = c.getInt(c.getColumnIndex(KEY_ID));
                 int r_id = c.getInt(c.getColumnIndex(KEY_RECIPE_ID));
@@ -491,4 +539,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.delete(TABLE_STEP, KEY_ID + " = ?", new String[] { String.valueOf(step_id)});
     }
 
+    //Get a count of steps
+    public int getStepCount() {
+        String countQuery = "SELECT  * FROM " + TABLE_STEP;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+        int count = 0;
+        if(cursor != null) {
+            count = cursor.getCount();
+            cursor.close();
+        }
+        // return count
+        return count;
+    }
 }

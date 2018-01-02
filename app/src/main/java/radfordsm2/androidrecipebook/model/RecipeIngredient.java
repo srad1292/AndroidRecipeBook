@@ -13,7 +13,7 @@ public class RecipeIngredient {
     private String amount;
 
     public RecipeIngredient(){
-
+        this.id = -1;
     }
 
     public RecipeIngredient(int recipe_id, int ingredient_id, String amount){

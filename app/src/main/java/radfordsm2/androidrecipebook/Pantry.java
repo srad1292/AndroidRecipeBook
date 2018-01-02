@@ -19,7 +19,7 @@ public class Pantry extends AppCompatActivity {
     private List<String> listDataHeader;
     private HashMap<String, List<String>> listDataChild;
     private List<String> meats, fruitveggie, beverages, alcohol, bread;
-    private List<String> dips, canned, cereal, snacks, sweets, mixes;
+    private List<String> dips, cheese, canned, cereal, snacks, sweets, mixes;
     private List<String> sauces, seasoning, dressing, oil, other;
 
     @Override
@@ -119,6 +119,7 @@ public class Pantry extends AppCompatActivity {
         listDataHeader.add("Alcohol and Liquor");
         listDataHeader.add("Bread");
         listDataHeader.add("Dips and Spreads");
+        listDataHeader.add("Cheese");
         listDataHeader.add("Canned Goods");
         listDataHeader.add("Cereal, Oatmeal, and Grains");
         listDataHeader.add("Snacks");
@@ -136,6 +137,7 @@ public class Pantry extends AppCompatActivity {
         alcohol = new ArrayList<String>();
         bread = new ArrayList<String>();
         dips = new ArrayList<String>();
+        cheese = new ArrayList<String>();
         canned = new ArrayList<String>();
         cereal = new ArrayList<String>();
         snacks = new ArrayList<String>();
@@ -164,15 +166,16 @@ public class Pantry extends AppCompatActivity {
         listDataChild.put(listDataHeader.get(3), alcohol);
         listDataChild.put(listDataHeader.get(4), bread);
         listDataChild.put(listDataHeader.get(5), dips);
-        listDataChild.put(listDataHeader.get(6), canned);
-        listDataChild.put(listDataHeader.get(7), cereal);
-        listDataChild.put(listDataHeader.get(8), snacks);
-        listDataChild.put(listDataHeader.get(9), sweets);
-        listDataChild.put(listDataHeader.get(10), mixes);
-        listDataChild.put(listDataHeader.get(11), sauces);
-        listDataChild.put(listDataHeader.get(12), seasoning);
-        listDataChild.put(listDataHeader.get(13), dressing);
-        listDataChild.put(listDataHeader.get(14), oil);
-        listDataChild.put(listDataHeader.get(15), other);
+        listDataChild.put(listDataHeader.get(6), cheese);
+        listDataChild.put(listDataHeader.get(7), canned);
+        listDataChild.put(listDataHeader.get(8), cereal);
+        listDataChild.put(listDataHeader.get(9), snacks);
+        listDataChild.put(listDataHeader.get(10), sweets);
+        listDataChild.put(listDataHeader.get(11), mixes);
+        listDataChild.put(listDataHeader.get(12), sauces);
+        listDataChild.put(listDataHeader.get(13), seasoning);
+        listDataChild.put(listDataHeader.get(14), dressing);
+        listDataChild.put(listDataHeader.get(15), oil);
+        listDataChild.put(listDataHeader.get(16), other);
     }
 }

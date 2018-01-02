@@ -13,7 +13,7 @@ public class Step {
     private int step_number;
 
     public Step(){
-
+        this.id = -1;
     }
 
     public Step(int recipe_id, String direction, int step_number){
