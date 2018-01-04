@@ -60,4 +60,9 @@ public class RecipeIngredient {
     public void setAmount(String amount){
         this.amount = amount;
     }
+
+    //representations
+    public String testString(){
+        return "rID: " + this.recipe_id + " iID: " + this.ingredient_id + "amount: " + this.amount;
+    }
 }

@@ -6,4 +6,16 @@
         android:title="@string/initDB"
         app:showAsAction="never">
     </item>
+
+    <item
+        android:id="@+id/action_clearDB"
+        android:title="@string/clearDB"
+        app:showAsAction="never">
+    </item>
+
+    <item
+        android:id="@+id/action_testCrud"
+        android:title="@string/testCrud"
+        app:showAsAction="never">
+    </item>
 </menu>

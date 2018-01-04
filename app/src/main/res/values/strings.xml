@@ -7,5 +7,6 @@
     <string name="meal_header">Meal Builder</string>
 
     <string name="initDB">Fill Database</string>
-
+    <string name="clearDB">Clear Database</string>
+    <string name="testCrud">Test Database Actions</string>
 </resources>

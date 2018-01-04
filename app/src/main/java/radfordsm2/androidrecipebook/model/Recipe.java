@@ -95,4 +95,9 @@ public class Recipe {
     public void setCategory(String category){
         this.category = category;
     }
+
+    //Representations
+    public String testString(){
+        return this.name + ": " + this.category + " - " + this.total_time;
+    }
 }

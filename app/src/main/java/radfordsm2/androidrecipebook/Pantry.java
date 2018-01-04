@@ -1,6 +1,7 @@
 package radfordsm2.androidrecipebook;
 
 
+import android.provider.ContactsContract;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import radfordsm2.androidrecipebook.helper.DatabaseHelper;
 
 public class Pantry extends AppCompatActivity {
 
@@ -154,11 +157,26 @@ public class Pantry extends AppCompatActivity {
 
     private void prepareListChildren() {
 
-        meats.add("Salmon");
-        meats.add("Sirloin Steak");
-        fruitveggie.add("Apples");
-        fruitveggie.add("Oranges");
-        fruitveggie.add("Blueberries");
+
+        DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+        meats = db.getAllIngredientsByCategoryInPantry("Meats, Poultry, and Seafood");
+        fruitveggie = db.getAllIngredientsByCategoryInPantry("Fruits and Vegetables");
+        beverages = db.getAllIngredientsByCategoryInPantry("Beverages");
+        alcohol = db.getAllIngredientsByCategoryInPantry("Alcohol and Liquor");
+        bread = db.getAllIngredientsByCategoryInPantry("Bread");
+        dips = db.getAllIngredientsByCategoryInPantry("Dips and Spreads");
+        cheese = db.getAllIngredientsByCategoryInPantry("Cheese");
+        canned = db.getAllIngredientsByCategoryInPantry("Canned Goods");
+        cereal = db.getAllIngredientsByCategoryInPantry("Cereal, Oatmeal, and Grains");
+        snacks = db.getAllIngredientsByCategoryInPantry("Snacks");
+        sweets = db.getAllIngredientsByCategoryInPantry("Sweets");
+        mixes = db.getAllIngredientsByCategoryInPantry("Mixes");
+        sauces = db.getAllIngredientsByCategoryInPantry("Sauces");
+        seasoning = db.getAllIngredientsByCategoryInPantry("Seasonings, Spices, and Basics");
+        dressing = db.getAllIngredientsByCategoryInPantry("Dressings");
+        oil = db.getAllIngredientsByCategoryInPantry("Oils and Vinegars");
+        other = db.getAllIngredientsByCategoryInPantry("Other");
+        db.closeDatabase();
 
         listDataChild.put(listDataHeader.get(0), meats);
         listDataChild.put(listDataHeader.get(1), fruitveggie);

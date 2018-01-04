@@ -3,6 +3,7 @@ package radfordsm2.androidrecipebook;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
@@ -11,6 +12,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import radfordsm2.androidrecipebook.helper.DatabaseHelper;
+import radfordsm2.androidrecipebook.model.Recipe;
+
 public class Recipes extends AppCompatActivity {
 
     private ExpandableListAdapter listAdapter;
@@ -18,7 +22,7 @@ public class Recipes extends AppCompatActivity {
     private List<String> listDataHeader;
     private HashMap<String, List<String>> listDataChild;
     private List<String> breakfast, appetizers, soups, salads, sides;
-    private List<String> main, desserts, drinks, breads, snacks;
+    private List<String> main, desserts, drinks, breads, dips, snacks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +118,7 @@ public class Recipes extends AppCompatActivity {
         listDataHeader.add("Desserts");
         listDataHeader.add("Drinks");
         listDataHeader.add("Breads and Pastries");
+        listDataHeader.add("Dips and Spreads");
         listDataHeader.add("Snacks");
 
         breakfast = new ArrayList<String>();
@@ -125,17 +130,31 @@ public class Recipes extends AppCompatActivity {
         desserts = new ArrayList<String>();
         drinks = new ArrayList<String>();
         breads = new ArrayList<String>();
+        dips = new ArrayList<String>();
         snacks = new ArrayList<String>();
     }
 
-
+    /**
+     * Fill the categories with correct data
+     * i.e breakfast = db.getAllRecipeNamesByCategory("Breakfast")
+     * For each recipe in the Recipe table
+     */
     private void prepareListChildren() {
 
-        breakfast.add("Omeltte");
-        salads.add("Chicken Ceasar Salad");
-        main.add("Crock Pot Roast");
-        main.add("Chicken Parmesan");
-        main.add("Double Stack");
+
+        DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+        breakfast = db.getAllRecipeNamesByCategory("Breakfast");
+        appetizers = db.getAllRecipeNamesByCategory("Appetizers");
+        soups = db.getAllRecipeNamesByCategory("Soups");
+        salads = db.getAllRecipeNamesByCategory("Salads");
+        sides = db.getAllRecipeNamesByCategory("Sides");
+        main = db.getAllRecipeNamesByCategory("Main Dishes");
+        desserts = db.getAllRecipeNamesByCategory("Desserts");
+        drinks = db.getAllRecipeNamesByCategory("Drinks");
+        breads = db.getAllRecipeNamesByCategory("Breads and Pastries");
+        dips = db.getAllRecipeNamesByCategory("Dips and Spreads");
+        snacks = db.getAllRecipeNamesByCategory("Snacks");
+        db.closeDatabase();
 
         listDataChild.put(listDataHeader.get(0), breakfast);
         listDataChild.put(listDataHeader.get(1), appetizers);
@@ -146,6 +165,7 @@ public class Recipes extends AppCompatActivity {
         listDataChild.put(listDataHeader.get(6), desserts);
         listDataChild.put(listDataHeader.get(7), drinks);
         listDataChild.put(listDataHeader.get(8), breads);
-        listDataChild.put(listDataHeader.get(9), snacks);
+        listDataChild.put(listDataHeader.get(9), dips);
+        listDataChild.put(listDataHeader.get(10), snacks);
     }
 }

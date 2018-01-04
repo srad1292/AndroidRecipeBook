@@ -62,4 +62,9 @@ public class Step {
     public void setStepNumber(int step_number){
         this.step_number = step_number;
     }
+
+    //representations
+    public String testString(){
+        return "rId: " + this.recipe_id + " " + this.step_number + " - " + this.direction;
+    }
 }
