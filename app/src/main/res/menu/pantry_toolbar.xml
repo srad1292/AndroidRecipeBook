@@ -8,4 +8,11 @@
         android:icon="@drawable/icon_add_white"
         app:showAsAction="always"
         />
+
+    <item android:id="@+id/action_menu_edit_ingredient"
+        android:title="@string/editIngredient"
+        android:orderInCategory="1"
+        android:icon="@drawable/icon_edit"
+        app:showAsAction="always"
+        />
 </menu>

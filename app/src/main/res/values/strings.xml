@@ -18,6 +18,7 @@
     <string name="category_header">Category</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
 
     <!-- Main Activity Strings -->
     <string name="initDB">Fill Database</string>
@@ -45,6 +46,7 @@
 
     <!-- Pantry Activity Strings -->
     <string name="addIngredient">Add Ingredient</string>
+    <string name="editIngredient">Edit Ingredient</string>
 
     <!-- Add / Edit Ingredient Activities -->
     <string name="in_pantry_label">In Pantry: </string>
@@ -57,6 +59,7 @@
         <item>Fruits and Vegetables</item>
         <item>Beverages</item>
         <item>Alcohol and Liquor</item>
+        <item>Bread</item>
         <item>Dips and Spreads</item>
         <item>Cheese</item>
         <item>Canned Goods</item>

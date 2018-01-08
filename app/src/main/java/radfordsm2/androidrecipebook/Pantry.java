@@ -1,9 +1,11 @@
 package radfordsm2.androidrecipebook;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.provider.ContactsContract;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -19,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import radfordsm2.androidrecipebook.helper.DatabaseHelper;
+import radfordsm2.androidrecipebook.model.Ingredient;
 
 public class Pantry extends AppCompatActivity {
 
@@ -92,7 +95,7 @@ public class Pantry extends AppCompatActivity {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
-                // TODO Auto-generated method stub
+                /**
                 Toast.makeText(
                         getApplicationContext(),
                         listDataHeader.get(groupPosition)
@@ -101,6 +104,11 @@ public class Pantry extends AppCompatActivity {
                                 listDataHeader.get(groupPosition)).get(
                                 childPosition), Toast.LENGTH_SHORT)
                         .show();
+                 */
+                startEditIngredient(listDataChild.get(
+                        listDataHeader.get(groupPosition)).get(
+                        childPosition));
+
                 return false;
             }
         });
@@ -120,7 +128,10 @@ public class Pantry extends AppCompatActivity {
                 Log.i("onOptionsItemSelected", "Add recipe button pressed");
                 startAddIngredient();
                 return true;
-
+            case R.id.action_menu_edit_ingredient:
+                Log.i("onOptionsItemSelected", "Add recipe button pressed");
+                editIngredientPopup();
+                return true;
 
             default:
                 // If we got here, the user's action was not recognized.
@@ -223,8 +234,38 @@ public class Pantry extends AppCompatActivity {
         listDataChild.put(listDataHeader.get(16), other);
     }
 
+
+    public void editIngredientPopup(){
+        AlertDialog.Builder b = new AlertDialog.Builder(this);
+        b.setTitle("Select Ingredient");
+        DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+        List<String> ingredients = db.getAllIngredientNames();
+        final String[] ingredient_names = ingredients.toArray(new String[ingredients.size()]);
+        b.setItems(ingredient_names, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                dialog.dismiss();
+                startEditIngredient(ingredient_names[which]);
+            }
+
+
+        });
+
+        b.show();
+    }
+
+
     public void startAddIngredient(){
         Intent intent = new Intent(this, AddIngredient.class);
+        startActivity(intent);
+    }
+
+    public void startEditIngredient(String name){
+        Intent intent = new Intent(this, EditIngredient.class);
+        Log.e("startEdit", name);
+        intent.putExtra("SELECTED_INGREDIENT", name);
         startActivity(intent);
     }
 }

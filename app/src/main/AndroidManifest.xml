@@ -31,9 +31,10 @@
         <activity
             android:name=".AddRecipe"
             android:parentActivityName=".Recipes" />
-
-
-        <activity android:name=".AddIngredient"
+        <activity
+            android:name=".AddIngredient"
+            android:parentActivityName=".Pantry" />
+        <activity android:name=".EditIngredient"
             android:parentActivityName=".Pantry"></activity>
     </application>
 
