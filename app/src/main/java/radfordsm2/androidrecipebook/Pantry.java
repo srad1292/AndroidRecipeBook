@@ -1,10 +1,15 @@
 package radfordsm2.androidrecipebook;
 
 
+import android.content.Intent;
 import android.provider.ContactsContract;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
@@ -29,11 +34,9 @@ public class Pantry extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantry);
-        /**
-         Toolbar myToolbar = (Toolbar) findViewById(R.id.pantry_toolbar);
-         myToolbar.setTitle("Pantry");
-         setSupportActionBar(myToolbar);
-         */
+        Toolbar myToolbar = findViewById(R.id.pantry_toolbar);
+        setSupportActionBar(myToolbar);
+
 
         // get the listview
         expListView = (ExpandableListView) findViewById(R.id.pantry_accordion);
@@ -103,6 +106,29 @@ public class Pantry extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.pantry_toolbar, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_menu_add_ingredient:
+                Log.i("onOptionsItemSelected", "Add recipe button pressed");
+                startAddIngredient();
+                return true;
+
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
 
     @Override
     public void onBackPressed(){
@@ -195,5 +221,10 @@ public class Pantry extends AppCompatActivity {
         listDataChild.put(listDataHeader.get(14), dressing);
         listDataChild.put(listDataHeader.get(15), oil);
         listDataChild.put(listDataHeader.get(16), other);
+    }
+
+    public void startAddIngredient(){
+        Intent intent = new Intent(this, AddIngredient.class);
+        startActivity(intent);
     }
 }

@@ -117,10 +117,11 @@ public class MainActivity extends AppCompatActivity {
             baconCheeseBagel(db);
             marinatedHotDogs(db);
             caesarSalad(db);
-            cornflakePotatoCasserole(db);
             ovenFrenchFries(db);
+            cornflakePotatoCasserole(db);
             loadedNachos(db);
             brownies(db);
+            standardIngredients(db);
             Log.i("fillDatabase: ", "Recipes: " + db.getRecipeCount());
             Log.i("fillDatabase: ", "Ingredients: " + db.getIngredientCount());
             Log.i("fillDatabase: ", "RecipeIngredients: " + db.getRecipeIngredientCount());
@@ -293,6 +294,58 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void standardIngredients(DatabaseHelper db){
+        Ingredient ingredient1 = new Ingredient("Skim Milk", "Beverages", 1);
+        long ing1_id = db.createIngredient(ingredient1);
+
+        ingredient1 = new Ingredient("Orange Juice", "Beverages", 1);
+        ing1_id = db.createIngredient(ingredient1);
+
+        ingredient1 = new Ingredient("White Bread", "Bread", 0);
+        ing1_id = db.createIngredient(ingredient1);
+
+        ingredient1 = new Ingredient("Sour Dough Bread", "Bread", 1);
+        ing1_id = db.createIngredient(ingredient1);
+
+        ingredient1 = new Ingredient("Honey Wheat Bread", "Bread", 0);
+        ing1_id = db.createIngredient(ingredient1);
+
+        ingredient1 = new Ingredient("Cheerios", "Cereal, Oatmeal, and Grains", 1);
+        ing1_id = db.createIngredient(ingredient1);
+
+        ingredient1 = new Ingredient("Crispix", "Cereal, Oatmeal, and Grains", 0);
+        ing1_id = db.createIngredient(ingredient1);
+
+        ingredient1 = new Ingredient("Rice Krispies", "Cereal, Oatmeal, and Grains", 1);
+        ing1_id = db.createIngredient(ingredient1);
+
+        ingredient1 = new Ingredient("Lays Original Potato Chips", "Snacks", 1);
+        ing1_id = db.createIngredient(ingredient1);
+
+        ingredient1 = new Ingredient("Cheese Itz", "Snacks", 1);
+        ing1_id = db.createIngredient(ingredient1);
+
+        ingredient1 = new Ingredient("Oreos", "Sweets", 1);
+        ing1_id = db.createIngredient(ingredient1);
+
+        ingredient1 = new Ingredient("Animal Crackers", "Sweets", 1);
+        ing1_id = db.createIngredient(ingredient1);
+
+        ingredient1 = new Ingredient("Chocolate Teddy Grahams", "Sweets", 1);
+        ing1_id = db.createIngredient(ingredient1);
+
+        ingredient1 = new Ingredient("Garlic Powder", "Seasonings, Spices, and Basics", 1);
+        ing1_id = db.createIngredient(ingredient1);
+
+        ingredient1 = new Ingredient("Paprika", "Seasonings, Spices, and Basics", 1);
+        ing1_id = db.createIngredient(ingredient1);
+
+        ingredient1 = new Ingredient("Onion Powder", "Seasonings, Spices, and Basics", 1);
+        ing1_id = db.createIngredient(ingredient1);
+
+        ingredient1 = new Ingredient("Parsley", "Seasonings, Spices, and Basics", 1);
+        ing1_id = db.createIngredient(ingredient1);
+    }
 
     public void testCrud(){
         Log.i("Main Toolbar", "Pressed Fill Database");

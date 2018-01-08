@@ -256,7 +256,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public List<String> getAllRecipeNamesByCategory(String recipe_category){
         List<String> recipes = new ArrayList<String>();
         String selectQuery = "SELECT * FROM " + TABLE_RECIPE
-                + " WHERE " + KEY_CATEGORY + " = '" + recipe_category + "'";
+                + " WHERE " + KEY_CATEGORY + " = '" + recipe_category + "'"
+                + " ORDER BY " + KEY_NAME;
 
         Log.e(LOG, selectQuery);
 
@@ -344,6 +345,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return ingredients;
     }
 
+    public List<String> getAllIngredientNames(){
+        List<String> ingredients = new ArrayList<String>();
+        String selectQuery = "SELECT " + KEY_NAME + " FROM " + TABLE_INGREDIENT
+                + " ORDER BY " + KEY_NAME;
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null && c.moveToFirst()){
+            do {
+                String name = c.getString(c.getColumnIndex(KEY_NAME));
+
+                ingredients.add(name);
+            } while(c.moveToNext());
+            c.close();
+        }
+        return ingredients;
+    }
+
     //Retrieve ingredient by ID
     public Ingredient getIngredientByID(long ingredient_id){
         String selectQuery = "SELECT * FROM " + TABLE_INGREDIENT
@@ -395,7 +417,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public List<Ingredient> getAllIngredientsByCategory(String ingredient_category){
         List<Ingredient> ingredients = new ArrayList<Ingredient>();
         String selectQuery = "SELECT * FROM " + TABLE_INGREDIENT
-                + " WHERE " + KEY_CATEGORY + " = '" + ingredient_category + "'";
+                + " WHERE " + KEY_CATEGORY + " = '" + ingredient_category + "'"
+                + " ORDER BY " + KEY_NAME;
 
         Log.e(LOG, selectQuery);
 
@@ -422,7 +445,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<String> ingredients = new ArrayList<String>();
         String selectQuery = "SELECT * FROM " + TABLE_INGREDIENT
                 + " WHERE " + KEY_CATEGORY + " = '" + ingredient_category + "'"
-                + " AND " + KEY_IN_PANTRY + " = " + 1;
+                + " AND " + KEY_IN_PANTRY + " = " + 1
+                + " ORDER BY " + KEY_NAME;
 
         Log.e(LOG, selectQuery);
 

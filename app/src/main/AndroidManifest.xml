@@ -16,14 +16,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Recipes"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".ShoppingList"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".Pantry"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".MealBuilder"
-            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".Recipes"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".ShoppingList"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".Pantry"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".MealBuilder"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".AddRecipe"
+            android:parentActivityName=".Recipes" />
+
+
+        <activity android:name=".AddIngredient"
+            android:parentActivityName=".Pantry"></activity>
     </application>
 
 </manifest>

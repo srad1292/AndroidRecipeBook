@@ -3,24 +3,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="radfordsm2.androidrecipebook.Pantry">
+    <!--
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
-    tools:context="radfordsm2.androidrecipebook.Pantry">
-
+    -->
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/main_toolbar"
+        android:id="@+id/pantry_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:background="@color/colorPrimaryDark"
+        app:titleTextColor="@color/ActionBarText"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:title="@string/pantry_header"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+        />
 
     <ScrollView android:layout_width="match_parent"
         android:layout_height="match_parent"

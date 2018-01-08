@@ -1,9 +1,13 @@
 package radfordsm2.androidrecipebook;
 
+import android.content.Intent;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
@@ -28,6 +32,8 @@ public class Recipes extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipes);
+        Toolbar myToolbar = findViewById(R.id.recipes_toolbar);
+        setSupportActionBar(myToolbar);
 
         // get the listview
         expListView = (ExpandableListView) findViewById(R.id.recipes_accordion);
@@ -97,16 +103,40 @@ public class Recipes extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.recipes_toolbar, menu);
+        return true;
+    }
 
     @Override
-    public void onBackPressed(){
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_menu_add_recipe:
+                Log.i("onOptionsItemSelected", "Add recipe button pressed");
+                startAddRecipe();
+                return true;
+
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
+
+
+    @Override
+    public void onBackPressed() {
         NavUtils.navigateUpFromSameTask(this);
     }
 
     private void prepareListData() {
 
         listDataHeader = new ArrayList<String>();
-        listDataChild = new HashMap<String,List<String>>();
+        listDataChild = new HashMap<String, List<String>>();
 
         // Adding child data
         listDataHeader.add("Breakfast");
@@ -168,4 +198,10 @@ public class Recipes extends AppCompatActivity {
         listDataChild.put(listDataHeader.get(9), dips);
         listDataChild.put(listDataHeader.get(10), snacks);
     }
+
+    public void startAddRecipe() {
+        Intent intent = new Intent(this, AddRecipe.class);
+        startActivity(intent);
+    }
+
 }

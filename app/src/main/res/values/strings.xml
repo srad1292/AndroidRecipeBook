@@ -1,12 +1,79 @@
 <resources>
+    <!-- Tool Bar Strings -->
     <string name="app_name">AndroidRecipeBook</string>
     <string name="main_header">Recipe Book</string>
     <string name="recipes_header">Recipes</string>
     <string name="pantry_header">Pantry</string>
     <string name="shopping_header">Shopping List</string>
     <string name="meal_header">Meal Builder</string>
+    <string name="add_recipes_header">Add New Recipe</string>
+    <string name="edit_recipes_header">Edit Recipe</string>
+    <string name="add_ingredient_header">Add New Ingredient</string>
+    <string name="edit_ingredient_header">Edit Ingredient</string>
 
+    <!-- Common Strings -->
+    <string name="name_label">Name: </string>
+    <string name="name_header">Name</string>
+    <string name="category_label">Category: </string>
+    <string name="category_header">Category</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- Main Activity Strings -->
     <string name="initDB">Fill Database</string>
     <string name="clearDB">Clear Database</string>
     <string name="testCrud">Test Database Actions</string>
+
+    <!-- Recipes Activity Strings -->
+    <string name="addRecipe">Add Recipe</string>
+
+    <!-- Add Recipe Activity and Edit Recipe Activity Strings -->
+    <string name="description_header">Description</string>
+    <string name="image_label">Add Image: </string>
+    <string name="times_header">Times</string>
+    <string name="prep_time_label">Prep: </string>
+    <string name="cook_time_label">Cook: </string>
+    <string name="total_time_label">Total: </string>
+    <string name="ingredients_header">Ingredients</string>
+    <string name="add_ingredient">Add Ingredient</string>
+    <string name="directions_header">Directions</string>
+    <string name="add_step">Add Step</string>
+    <string name="ingredient_hint">Ingredient</string>
+    <string name="unit_hint">Units</string>
+    <string name="step_hint">Direction</string>
+
+
+    <!-- Pantry Activity Strings -->
+    <string name="addIngredient">Add Ingredient</string>
+
+    <!-- Add / Edit Ingredient Activities -->
+    <string name="in_pantry_label">In Pantry: </string>
+    <string name="in_pantry_header">Currently In Pantry</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <string-array name="categories_array">
+        <item>Meats, Poultry, and Seafood</item>
+        <item>Fruits and Vegetables</item>
+        <item>Beverages</item>
+        <item>Alcohol and Liquor</item>
+        <item>Dips and Spreads</item>
+        <item>Cheese</item>
+        <item>Canned Goods</item>
+        <item>Cereal, Oatmeal, and Grains</item>
+        <item>Snacks</item>
+        <item>Sweets</item>
+        <item>Mixes</item>
+        <item>Sauces</item>
+        <item>Seasonings, Spices, and Basics</item>
+        <item>Dressings</item>
+        <item>Oils and Vinegars</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="y_or_n">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+
 </resources>
