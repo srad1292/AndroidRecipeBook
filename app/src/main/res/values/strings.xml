@@ -16,6 +16,8 @@
     <string name="name_header">Name</string>
     <string name="category_label">Category: </string>
     <string name="category_header">Category</string>
+    <string name="shelf_label">Shelf: </string>
+    <string name="recipe_type">Type: </string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="delete">Delete</string>
@@ -27,6 +29,10 @@
 
     <!-- Recipes Activity Strings -->
     <string name="addRecipe">Add Recipe</string>
+
+    <!-- View Recipe Strings -->
+    <string name="editRecipe">Edit Recipe</string>
+    <string name="deleteRecipe">Delete Recipe</string>
 
     <!-- Add Recipe Activity and Edit Recipe Activity Strings -->
     <string name="description_header">Description</string>
@@ -40,9 +46,23 @@
     <string name="directions_header">Directions</string>
     <string name="add_step">Add Step</string>
     <string name="ingredient_hint">Ingredient</string>
-    <string name="unit_hint">Units</string>
+    <string name="unit_hint">Amount</string>
     <string name="step_hint">Direction</string>
+    <string name="dialog_header">New Ingredient:</string>
 
+    <string-array name="recipe_category_array">
+        <item>Breakfast</item>
+        <item>Appetizers</item>
+        <item>Soups</item>
+        <item>Salads</item>
+        <item>Sides</item>
+        <item>Main Dishes</item>
+        <item>Desserts</item>
+        <item>Drinks</item>
+        <item>Breads and Pastries</item>
+        <item>Dips and Spreads</item>
+        <item>Snacks</item>
+    </string-array>
 
     <!-- Pantry Activity Strings -->
     <string name="addIngredient">Add Ingredient</string>

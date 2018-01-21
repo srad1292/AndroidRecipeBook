@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="radfordsm2.androidrecipebook.ViewRecipe"
+    >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/view_recipe_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimaryDark"
+        app:titleTextColor="@color/ActionBarText"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+
+
+        />
+
+    <ScrollView android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:layout_below="@+id/view_recipe_toolbar">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="2dp">
+
+            <TextView
+                android:id="@+id/header_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_alignParentTop="true"
+                android:text="Pancakes"
+                android:textSize="25sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/header_recipe_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginBottom="4dp"
+                android:text="Breakfast"
+                android:textSize="20sp"
+                android:layout_below="@id/header_name"
+                />
+
+
+
+            <ImageView
+                android:id="@+id/add_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_below="@id/header_recipe_category"
+                android:src="@drawable/icon_add_photo"
+                android:gravity="center"/>
+
+
+            <TextView
+                android:id="@+id/header_times"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/add_image"
+                android:layout_marginBottom="4dp"
+                android:text="@string/times_header"
+                android:gravity="center"
+                android:textSize="25dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/label_prep_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_marginBottom="4dp"
+                android:layout_below="@id/header_times"
+                />
+
+
+            <TextView
+                android:id="@+id/label_cook_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_marginBottom="4dp"
+                android:layout_below="@id/label_prep_time"
+                />
+
+
+            <TextView
+                android:id="@+id/label_total_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_marginBottom="4dp"
+                android:layout_below="@id/label_cook_time"
+                />
+
+
+
+            <TextView
+                android:id="@+id/header_ingredients"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/label_total_time"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/ingredients_header"
+                android:gravity="center"
+                android:textSize="25dp"
+                android:textStyle="bold"/>
+
+
+            <TableLayout
+                android:id="@+id/ingredients_table"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/header_ingredients"
+                android:stretchColumns="0"
+                android:layout_marginBottom="8dp">
+            </TableLayout>
+
+
+
+            <TextView
+                android:id="@+id/header_steps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ingredients_table"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/directions_header"
+                android:gravity="center"
+                android:textSize="25dp"
+                android:textStyle="bold"/>
+
+            <TableLayout
+                android:id="@+id/directions_table"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/header_steps"
+                android:shrinkColumns="0"
+                android:layout_marginBottom="4dp">
+            </TableLayout>
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+</RelativeLayout>

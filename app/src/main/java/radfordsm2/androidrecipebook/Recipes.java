@@ -89,15 +89,9 @@ public class Recipes extends AppCompatActivity {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
-                // TODO Auto-generated method stub
-                Toast.makeText(
-                        getApplicationContext(),
-                        listDataHeader.get(groupPosition)
-                                + " : "
-                                + listDataChild.get(
-                                listDataHeader.get(groupPosition)).get(
-                                childPosition), Toast.LENGTH_SHORT)
-                        .show();
+                startViewRecipe(listDataChild.get(
+                        listDataHeader.get(groupPosition)).get(
+                        childPosition));
                 return false;
             }
         });
@@ -126,7 +120,6 @@ public class Recipes extends AppCompatActivity {
 
         }
     }
-
 
     @Override
     public void onBackPressed() {
@@ -197,6 +190,13 @@ public class Recipes extends AppCompatActivity {
         listDataChild.put(listDataHeader.get(8), breads);
         listDataChild.put(listDataHeader.get(9), dips);
         listDataChild.put(listDataHeader.get(10), snacks);
+    }
+
+    public void startViewRecipe(String name){
+        Intent intent = new Intent(this, ViewRecipe.class);
+        Log.e("startViewRecipe", name);
+        intent.putExtra("SELECTED_RECIPE", name);
+        startActivity(intent);
     }
 
     public void startAddRecipe() {

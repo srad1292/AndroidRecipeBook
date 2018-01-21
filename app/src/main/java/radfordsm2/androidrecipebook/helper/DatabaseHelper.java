@@ -117,6 +117,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.close();
     }
 
+
     public void clearDatabase(){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_STEP, null, null);
