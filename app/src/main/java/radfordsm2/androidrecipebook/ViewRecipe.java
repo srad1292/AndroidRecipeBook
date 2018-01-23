@@ -129,9 +129,17 @@ public class ViewRecipe extends AppCompatActivity {
         DatabaseHelper db = new DatabaseHelper(getApplicationContext());
         for(RecipeIngredient ing: recipeIngredientList){
             row = new TableRow(this);
-            row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+            TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT);
+            /**
+            Resources r = getResources();
+            float pxBottomMargin = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, r.getDisplayMetrics());
+
+            params.setMargins(0,0,0,Math.round(pxBottomMargin));
+            */
+            row.setLayoutParams(params);
 
             TextView ing_amount = new TextView(this);
+            //ing_amount.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
             current_ingredient = db.getIngredientByID(ing.getIngredientId());
             text = ing.getAmount() + " " + current_ingredient.getName();
             ing_amount.setText(text);
