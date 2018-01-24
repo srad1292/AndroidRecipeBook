@@ -559,6 +559,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return ingredients;
     }
 
+    //Retrieve all RecipeIngredients by ingredient
+    public List<RecipeIngredient> getAllIngredientsByIngredient(long ing_id){
+        List<RecipeIngredient> ingredients = new ArrayList<RecipeIngredient>();
+        String selectQuery = "SELECT * FROM " + TABLE_RECIPE_INGREDIENT
+                + " WHERE " + KEY_INGREDIENT_ID + " = " + ing_id;
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null && c.moveToFirst()){
+            do {
+                int id = c.getInt(c.getColumnIndex(KEY_ID));
+                int r_id = c.getInt(c.getColumnIndex(KEY_RECIPE_ID));
+                int ingredient_id = c.getInt(c.getColumnIndex(KEY_INGREDIENT_ID));
+                String amount = c.getString(c.getColumnIndex(KEY_AMOUNT));
+                RecipeIngredient ri = new RecipeIngredient(id, r_id, ingredient_id, amount);
+
+                ingredients.add(ri);
+            } while(c.moveToNext());
+            c.close();
+        }
+        return ingredients;
+    }
+
     //Update a RecipeIngredient
     public int updateRecipeIngredient(RecipeIngredient recipeIngredient) {
         SQLiteDatabase db = this.getWritableDatabase();

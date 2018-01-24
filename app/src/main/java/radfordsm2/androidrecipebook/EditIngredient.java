@@ -18,8 +18,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.List;
+
 import radfordsm2.androidrecipebook.helper.DatabaseHelper;
 import radfordsm2.androidrecipebook.model.Ingredient;
+import radfordsm2.androidrecipebook.model.RecipeIngredient;
 
 public class EditIngredient extends AppCompatActivity {
 
@@ -155,6 +158,10 @@ public class EditIngredient extends AppCompatActivity {
         DatabaseHelper db = new DatabaseHelper(getApplicationContext());
         try{
             Ingredient ingredient = db.getIngredientByName(old_name);
+            List<RecipeIngredient> rIs = db.getAllIngredientsByIngredient(ingredient.getId());
+            for(RecipeIngredient ri: rIs){
+                db.deleteRecipeIngredient(ri.getId());
+            }
             db.deleteIngredient(ingredient.getId());
         }
         catch (Exception e){
