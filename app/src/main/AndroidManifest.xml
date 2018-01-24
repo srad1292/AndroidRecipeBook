@@ -28,17 +28,22 @@
         <activity
             android:name=".MealBuilder"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".ViewRecipe"
-            android:parentActivityName=".Recipes"></activity>
+        <activity
+            android:name=".ViewRecipe"
+            android:parentActivityName=".Recipes" />
         <activity
             android:name=".AddRecipe"
             android:parentActivityName=".Recipes" />
+        <activity
+            android:name=".EditRecipe"
+            android:parentActivityName=".ViewRecipe"/>
         <activity
             android:name=".AddIngredient"
             android:parentActivityName=".Pantry" />
         <activity
             android:name=".EditIngredient"
             android:parentActivityName=".Pantry" />
+
     </application>
 
 </manifest>

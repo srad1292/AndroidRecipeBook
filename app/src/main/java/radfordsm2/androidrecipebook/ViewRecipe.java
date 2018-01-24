@@ -33,17 +33,17 @@ public class ViewRecipe extends AppCompatActivity {
     Recipe recipe;
     List<RecipeIngredient> recipeIngredientList;
     List<Step> directionList;
-
+    String selected = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_recipe);
         Toolbar myToolbar = findViewById(R.id.view_recipe_toolbar);
         setSupportActionBar(myToolbar);
-
-        Intent intent = getIntent();
-        String selected = intent.getStringExtra("SELECTED_RECIPE");
-        Log.e("selected: ", selected);
+        if(selected.equals("")) {
+            Intent intent = getIntent();
+            selected = intent.getStringExtra("SELECTED_RECIPE");
+        }
         DatabaseHelper db = new DatabaseHelper(getApplicationContext());
         recipe = db.getRecipeByName(selected);
         Log.e("id: ", recipe.getId() + "");
@@ -65,7 +65,7 @@ public class ViewRecipe extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_menu_edit_recipe:
                 Log.i("onOptionsItemSelected", "Edit recipe button pressed");
-                //startAddRecipe();
+                startEditRecipe();
                 return true;
 
             case R.id.action_menu_delete_recipe:
@@ -94,6 +94,19 @@ public class ViewRecipe extends AppCompatActivity {
         NavUtils.navigateUpFromSameTask(this);
     }
 
+
+    public void fillActivity(String name){
+        setContentView(R.layout.activity_view_recipe);
+        Toolbar myToolbar = findViewById(R.id.view_recipe_toolbar);
+        setSupportActionBar(myToolbar);
+        DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+        recipe = db.getRecipeByName(name);
+        Log.e("id: ", recipe.getId() + "");
+        recipeIngredientList = db.getAllIngredientsByRecipe(recipe.getId());
+        directionList = db.getAllStepsByRecipe(recipe.getId());
+        db.closeDatabase();
+        displayRecipe();
+    }
 
     public void displayRecipe(){
         displayRecipeInformation();
@@ -181,7 +194,21 @@ public class ViewRecipe extends AppCompatActivity {
         db.closeDatabase();
     }
 
+    public void startEditRecipe(){
+        Intent intent = new Intent(this, EditRecipe.class);
+        intent.putExtra("SELECTED_RECIPE", selected);
+        startActivityForResult(intent, 1);
+    }
 
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK) {
+                 String changed = data.getStringExtra("CHANGED_RECIPE");
+                 fillActivity(changed);
+            }
+        }
+    }
 
     public void deleteRecipe(){
         DatabaseHelper db = new DatabaseHelper(getApplicationContext());
