@@ -24,7 +24,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight=".4"
+        android:backgroundTint="#b08abc"
         android:text="@string/recipes_header"
+        android:textSize="18dp"
         android:onClick="startRecipes"/>
 
     <Button
@@ -32,7 +34,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight=".4"
+        android:backgroundTint="#48a4b7"
         android:text="@string/pantry_header"
+        android:textSize="18dp"
         android:onClick="startPantry"/>
 
     <Button
@@ -40,7 +44,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight=".4"
+        android:backgroundTint="#dcb8a7"
         android:text="@string/shopping_header"
+        android:textSize="18dp"
         android:onClick="startShoppingList"/>
 
     <Button
@@ -48,7 +54,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight=".4"
+        android:backgroundTint="#7b7db3"
         android:text="@string/meal_header"
+        android:textSize="18dp"
         android:onClick="startMealBuilder"/>
 
 
